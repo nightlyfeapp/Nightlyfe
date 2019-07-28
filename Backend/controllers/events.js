@@ -6,18 +6,16 @@ const newEvent = async (req, res) => {
   const event = await new Event();
 
   // Get input data apply it to event model
-  event = req.body;
+  event.title = req.body.title;
+  event.timeOfEvent = req.body.timeOfEvent;
+  event.location = req.body.location;
+  event.description = req.body.description;
 
   // Save event
-  event
-    .save()
-    .then(event => {
-      console.log(event);
-      return res.json({ event }).status(200);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  event.save().then(event => {
+    console.log('Saved Event');
+    return res.json({ event });
+  });
 };
 
 // Gets an Event

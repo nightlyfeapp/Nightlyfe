@@ -2,7 +2,22 @@ const Event = require('../models/Event');
 
 // Create new Event
 const newEvent = async (req, res) => {
-  // Code
+  // Create instance of new event
+  const event = await new Event();
+
+  // Get input data apply it to event model
+  event = req.body;
+
+  // Save event
+  event
+    .save()
+    .then(event => {
+      console.log(event);
+      return res.json({ event }).status(200);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 // Gets an Event

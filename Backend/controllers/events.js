@@ -21,13 +21,17 @@ const newEvent = async (req, res) => {
 // Gets an Event
 const getEvent = async (req, res) => {
   Event.findById(req.params.eventId).then(event => {
+    console.log('Event Found');
     return res.json({ event }).status(200);
   });
 };
 
 // Gets all Events
 const allEvents = async (req, res) => {
-  // Code
+  Event.find({}).then(events => {
+    console.log('Events Found');
+    return res.json({ events }).status(200);
+  });
 };
 
 // Updates an Event

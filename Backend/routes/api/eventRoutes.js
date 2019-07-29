@@ -13,4 +13,6 @@ router.post('/new', newEvent);
 
 router.get('/:eventId', getEvent);
 
+router.get('/', allEvents);
+
 module.exports = router;

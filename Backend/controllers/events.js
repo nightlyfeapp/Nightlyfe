@@ -14,13 +14,15 @@ const newEvent = async (req, res) => {
   // Save event
   event.save().then(event => {
     console.log('Saved Event');
-    return res.json({ event });
+    return res.json({ event }).status(200);
   });
 };
 
 // Gets an Event
 const getEvent = async (req, res) => {
-  // Code
+  Event.findById(req.params.eventId).then(event => {
+    return res.json({ event }).status(200);
+  });
 };
 
 // Gets all Events

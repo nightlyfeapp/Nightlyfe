@@ -11,4 +11,6 @@ const {
 
 router.post('/new', newEvent);
 
+router.get('/:eventId', getEvent);
+
 module.exports = router;

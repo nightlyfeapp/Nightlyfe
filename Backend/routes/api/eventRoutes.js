@@ -11,7 +11,10 @@ const {
 
 router.post('/new', newEvent);
 
-router.get('/:eventId', getEvent);
+router
+  .route('/:eventId')
+  .get(getEvent)
+  .put(updateEvent);
 
 router.get('/', allEvents);
 

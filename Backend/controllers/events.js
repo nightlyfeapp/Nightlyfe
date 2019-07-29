@@ -36,7 +36,12 @@ const allEvents = async (req, res) => {
 
 // Updates an Event
 const updateEvent = async (req, res) => {
-  // Code
+  Event.findByIdAndUpdate(req.params.eventId, req.body, {
+    new: true,
+    useFindAndModify: false
+  }).then(event => {
+    return res.json(event).status(200);
+  });
 };
 
 // Deletes an Event

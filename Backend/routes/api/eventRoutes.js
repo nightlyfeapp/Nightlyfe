@@ -10,7 +10,9 @@ const {
   deleteEvent,
 } = require('../../controllers/events');
 
-router.post('/new', newEvent);
+const checkAuth = require('../../middleware/auth/checkAuth');
+
+router.route('/new').post(checkAuth, newEvent);
 
 router
   .route('/:eventId')

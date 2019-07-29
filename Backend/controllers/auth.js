@@ -34,7 +34,6 @@ const logIn = async (req, res) => {
     }
 
     if (user) {
-      console.log('USER: ', user);
       const payload = { subject: user };
       const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXP });
       res.json({ token }).status(200);

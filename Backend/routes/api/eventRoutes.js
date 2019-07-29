@@ -14,7 +14,8 @@ router.post('/new', newEvent);
 router
   .route('/:eventId')
   .get(getEvent)
-  .put(updateEvent);
+  .put(updateEvent)
+  .delete(deleteEvent);
 
 router.get('/', allEvents);
 

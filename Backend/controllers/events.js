@@ -12,7 +12,7 @@ const newEvent = async (req, res) => {
   event.description = req.body.description;
 
   // Save event
-  event.save().then(event => {
+  await event.save().then(event => {
     console.log('Saved Event');
     return res.json({ event }).status(200);
   });
@@ -20,7 +20,7 @@ const newEvent = async (req, res) => {
 
 // Gets an Event
 const getEvent = async (req, res) => {
-  Event.findById(req.params.eventId).then(event => {
+  await Event.findById(req.params.eventId).then(event => {
     console.log('Event Found');
     return res.json({ event }).status(200);
   });
@@ -28,7 +28,7 @@ const getEvent = async (req, res) => {
 
 // Gets all Events
 const allEvents = async (req, res) => {
-  Event.find({}).then(events => {
+  await Event.find({}).then(events => {
     console.log('Events Found');
     return res.json({ events }).status(200);
   });
@@ -36,17 +36,21 @@ const allEvents = async (req, res) => {
 
 // Updates an Event
 const updateEvent = async (req, res) => {
-  Event.findByIdAndUpdate(req.params.eventId, req.body, {
+  await Event.findByIdAndUpdate(req.params.eventId, req.body, {
     new: true,
     useFindAndModify: false
   }).then(event => {
+    console.log('Event updated');
     return res.json(event).status(200);
   });
 };
 
 // Deletes an Event
 const deleteEvent = async (req, res) => {
-  // Code
+  Event.findByIdAndDelete(req.params.eventId).then(event => {
+    console.log('Event Deleted');
+    return res.json(`Deleted Event: ${event}`);
+  });
 };
 
 module.exports = {

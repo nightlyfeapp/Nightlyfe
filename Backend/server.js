@@ -4,6 +4,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+
+require('./config/passport/index');
 
 const eventRoutes = require('./routes/api/eventRoutes');
 const authRoutes = require('./routes/api/authRoutes');
@@ -15,6 +18,15 @@ const server = express();
 // Middleware
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+
+server.use(passport.initialize());
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
 
 server.use(cors());
 

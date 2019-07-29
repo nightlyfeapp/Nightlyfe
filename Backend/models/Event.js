@@ -1,3 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-multi-assign */
+/* eslint-disable consistent-return */
+/* eslint-disable func-names */
+
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -29,7 +34,4 @@ const EventSchema = new Schema({
   },
 });
 
-const Event = mongoose.model('Event', EventSchema);
-module.exports = {
-  Event,
-};
+module.exports = Event = mongoose.model('Event', EventSchema);

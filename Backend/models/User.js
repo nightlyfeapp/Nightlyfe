@@ -1,5 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-multi-assign */
 /* eslint-disable consistent-return */
 /* eslint-disable func-names */
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
@@ -27,10 +30,10 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true,
-    match: [
-      /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/,
-      'Minimum eight characters, at least one letter, one number and one special character',
-    ],
+    // match: [
+    //   /"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"/,
+    //   'Minimum eight characters, at least one letter, one number and one special character',
+    // ],
   },
   eventsCreated: {
     type: Schema.Types.ObjectId,
@@ -71,7 +74,4 @@ UserSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-const User = mongoose.model('User', UserSchema);
-module.exports = {
-  User,
-};
+module.exports = User = mongoose.model('User', UserSchema);

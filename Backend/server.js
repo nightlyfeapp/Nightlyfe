@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const eventRoutes = require('./routes/api/eventRoutes');
+const authRoutes = require('./routes/api/authRoutes');
 
 require('dotenv').config();
 
@@ -17,6 +18,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 
 server.use('/events', eventRoutes);
+server.use('/auth', authRoutes);
 
 // Database Connection
 mongoose

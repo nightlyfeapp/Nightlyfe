@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Dependencies
 const express = require('express');
 const mongoose = require('mongoose');
@@ -24,12 +25,12 @@ server.use('/auth', authRoutes);
 mongoose
   .connect(process.env.DB, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => {
     console.log('Connected To Database!');
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });
 

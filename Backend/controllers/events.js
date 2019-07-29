@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const Event = require('../models/Event');
 
 // Create new Event
@@ -12,15 +13,15 @@ const newEvent = async (req, res) => {
   event.description = req.body.description;
 
   // Save event
-  await event.save().then(event => {
+  await event.save().then((savedEvent) => {
     console.log('Saved Event');
-    return res.json({ event }).status(200);
+    return res.json({ savedEvent }).status(200);
   });
 };
 
 // Gets an Event
 const getEvent = async (req, res) => {
-  await Event.findById(req.params.eventId).then(event => {
+  await Event.findById(req.params.eventId).then((event) => {
     console.log('Event Found');
     return res.json({ event }).status(200);
   });
@@ -28,7 +29,7 @@ const getEvent = async (req, res) => {
 
 // Gets all Events
 const allEvents = async (req, res) => {
-  await Event.find({}).then(events => {
+  await Event.find({}).then((events) => {
     console.log('Events Found');
     return res.json({ events }).status(200);
   });
@@ -38,8 +39,8 @@ const allEvents = async (req, res) => {
 const updateEvent = async (req, res) => {
   await Event.findByIdAndUpdate(req.params.eventId, req.body, {
     new: true,
-    useFindAndModify: false
-  }).then(event => {
+    useFindAndModify: false,
+  }).then((event) => {
     console.log('Event updated');
     return res.json(event).status(200);
   });
@@ -47,7 +48,7 @@ const updateEvent = async (req, res) => {
 
 // Deletes an Event
 const deleteEvent = async (req, res) => {
-  Event.findByIdAndDelete(req.params.eventId).then(event => {
+  Event.findByIdAndDelete(req.params.eventId).then((event) => {
     console.log('Event Deleted');
     return res.json(`Deleted Event: ${event}`);
   });
@@ -58,5 +59,5 @@ module.exports = {
   getEvent,
   allEvents,
   updateEvent,
-  deleteEvent
+  deleteEvent,
 };

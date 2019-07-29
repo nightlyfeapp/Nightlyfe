@@ -10,5 +10,5 @@ const logIn = async (req, res) => {
 
 module.exports = {
   signUp,
-  logIn
+  logIn,
 };

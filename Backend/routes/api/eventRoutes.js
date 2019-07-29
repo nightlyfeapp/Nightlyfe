@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 const {
@@ -6,7 +7,7 @@ const {
   getEvent,
   allEvents,
   updateEvent,
-  deleteEvent
+  deleteEvent,
 } = require('../../controllers/events');
 
 router.post('/new', newEvent);

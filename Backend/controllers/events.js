@@ -29,7 +29,7 @@ const newEvent = async (req, res) => {
     .then((user) => {
       user.eventsCreated.push(event._id);
       user.save();
-      console.log(user);
+      console.log('EVENT SAVED!');
       res.json({ event });
     })
     .catch((err) => {
@@ -93,45 +93,41 @@ const updateEvent = async (req, res) => {
       });
   } catch (err) {
     console.log(err);
-    res.send(err).status(500);
+    res.json({ err }).status(500);
   }
-  // Store array of users events
-
-  // Find event
-  // await Event.findByIdAndUpdate(req.params.eventId, req.body, {
-  //   new: true,
-  //   useFindAndModify: false,
-  // })
-  //   // Take event
-  //   .then((event) => {
-  //     // If the user created the event
-  //     if (eventArray.includes(event._id.toString())) {
-  //       console.log('Event updated');
-  //       return res.json({ event }).status(200);
-  //     }
-
-  //     return res.json({ message: 'Failed to update event' });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.json({ err }).status(500);
-  //   });
-
-  // await Event.findByIdAndUpdate(req.params.eventId, req.body, {
-  //   new: true,
-  //   useFindAndModify: false,
-  // }).then((event) => {
-  //   console.log('Event updated');
-  //   return res.json(event).status(200);
-  // });
 };
 
 // Deletes an Event
 const deleteEvent = async (req, res) => {
-  Event.findByIdAndDelete(req.params.eventId).then((event) => {
-    console.log('Event Deleted');
-    return res.json(`Deleted Event: ${event}`);
-  });
+  try {
+    // Get the current users id
+    const userId = req.user.subject._id;
+
+    // Find the event
+    Event.findById(req.params.eventId)
+      .then((event) => {
+        console.log('EVENT ID: ', event._id);
+        console.log('USER ID: ', userId);
+        // If the user is the creator of the event
+        if (userId.toString() === event.createdBy.toString()) {
+          // Remove event
+          event.remove();
+
+          res.json({ message: 'EVENT DELETED' }).status(200);
+          // Otherwise if the user did not create the event
+        } else {
+          // Tell the client that theyre not authorized
+          res.json({ message: 'User is not authorized' }).status(401);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({ err }).status(500);
+      });
+  } catch (err) {
+    console.log(err);
+    res.json({ err }).status(500);
+  }
 };
 
 module.exports = {

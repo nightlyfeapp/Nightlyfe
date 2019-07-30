@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-undef */
 /* eslint-disable no-multi-assign */
 /* eslint-disable consistent-return */

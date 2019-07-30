@@ -17,7 +17,7 @@ router.route('/new').post(checkAuth, newEvent);
 router
   .route('/:eventId')
   .get(getEvent)
-  .put(updateEvent)
+  .put(checkAuth, updateEvent)
   .delete(deleteEvent);
 
 router.get('/', allEvents);

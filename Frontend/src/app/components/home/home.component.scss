@@ -1,0 +1,20 @@
+.jumbotron {
+  background: url('/assets/images/header-img.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 90vh;
+  color: #fff;
+}
+
+.btn-default {
+  background-color: rgb(36, 39, 41);
+  color:#FFF;
+  border-color: rgb(255, 255, 255);
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+  background-color: #2F3E48;
+  color:#FFF;
+  border-color: #31347B;
+ }

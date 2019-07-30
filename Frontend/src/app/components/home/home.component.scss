@@ -3,18 +3,26 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  height: 90vh;
   color: #fff;
 }
 
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
 .btn-default {
-  background-color: rgb(36, 39, 41);
-  color:#FFF;
-  border-color: rgb(255, 255, 255);
+  background-color: #FFF;
+  color:#000;
+  border: solid 4px;
+  border-color:#31347B;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-  background-color: #2F3E48;
-  color:#FFF;
-  border-color: #31347B;
+  background-color:rgb(33, 13, 60);
+  border-color: rgb(33, 13, 60);
+  color: #FFF;
  }

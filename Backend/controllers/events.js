@@ -13,21 +13,18 @@ const newEvent = async (req, res) => {
   event.timeOfEvent = req.body.timeOfEvent;
   event.location = req.body.location;
   event.description = req.body.description;
+  event.createdBy = req.user.subject;
 
   // Save event
   await event
     .save()
     //  Find user
-    .then(
-      () => User.findById(req.user.subject._id),
-      // console.log('Saved Event');
-      // console.log(req.user);
-      // return res.json({ savedEvent }).status(200);
-    )
+    .then(() => User.findById(req.user.subject._id))
     .catch((err) => {
       console.log(err);
       res.send(err);
     })
+    // Associate event with user
     .then((user) => {
       user.eventsCreated.push(event);
       user.save();

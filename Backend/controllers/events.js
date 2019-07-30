@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 const Event = require('../models/Event');
+const User = require('../models/User');
 
 // Create new Event
 const newEvent = async (req, res) => {
@@ -13,10 +15,29 @@ const newEvent = async (req, res) => {
   event.description = req.body.description;
 
   // Save event
-  await event.save().then((savedEvent) => {
-    console.log('Saved Event');
-    return res.json({ savedEvent }).status(200);
-  });
+  await event
+    .save()
+    //  Find user
+    .then(
+      () => User.findById(req.user.subject._id),
+      // console.log('Saved Event');
+      // console.log(req.user);
+      // return res.json({ savedEvent }).status(200);
+    )
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    })
+    .then((user) => {
+      user.eventsCreated.push(event);
+      user.save();
+      console.log(user);
+      res.json({ event });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 };
 
 // Gets an Event

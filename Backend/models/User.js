@@ -35,10 +35,12 @@ const UserSchema = new Schema({
     //   'Minimum eight characters, at least one letter, one number and one special character',
     // ],
   },
-  eventsCreated: {
-    type: Schema.Types.ObjectId,
-    ref: 'Event',
-  },
+  eventsCreated: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Event',
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

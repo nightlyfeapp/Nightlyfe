@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import Login from './components/auth/login';
+import Signup from './components/auth/signup';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));

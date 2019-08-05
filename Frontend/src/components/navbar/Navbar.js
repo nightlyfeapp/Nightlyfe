@@ -9,7 +9,9 @@ class Navbar extends Component {
         <div>
           <div class="bp3-navbar-group bp3-align-left">
             <div class="bp3-navbar-heading">
-              <Link to={'/'}>NightLyfe</Link>
+              <Link to={'/'}>
+                <h1 class="bp3-font-size-large">NightLyfe</h1>
+              </Link>
             </div>
           </div>
           <div class="bp3-navbar-group bp3-align-left">

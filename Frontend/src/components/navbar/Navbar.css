@@ -1,7 +1,22 @@
+nav {
+    padding: 10px;
+}
+
 a {
     color: #FFF;
+    text-decoration: none;
 }
 
 a:visited {
+    text-decoration: none;
     color: #FFF;
+}
+
+a:hover {
+    text-decoration: none;
+    color: rgb(209, 209, 209);
+}
+
+h1:hover {
+    color: rgb(209, 209, 209);
 }

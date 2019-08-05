@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import Navbar from './components/navbar/Navbar';
 import Login from './components/auth/login/Login';
 import Signup from './components/auth/signup/Signup';
 import About from './components/about/About';
@@ -13,13 +14,14 @@ import Event from './components/events/event/Event';
 
 const appRoutes = (
   <Router>
+    <Navbar />
     <div>
-      <Route path="/" component={App} />
-      <Route path="/about" component={About} />
-      <Route path="/auth/login" component={Login} />
-      <Route path="/auth/signup" component={Signup} />
-      <Route path="/events" component={AllEvents} />
-      <Route path="/events/:eventId" component={Event} />
+      <Route exact path="/" component={App} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/auth/login" component={Login} />
+      <Route exact path="/auth/signup" component={Signup} />
+      <Route exact path="/events" component={AllEvents} />
+      <Route exact path="/events/:eventId" component={Event} />
     </div>
   </Router>
 );

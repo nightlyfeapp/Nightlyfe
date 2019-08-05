@@ -1,0 +1,20 @@
+.container {
+    text-align: center;
+    margin: 40px;
+}
+
+.card-container {
+    margin: 40px;
+}
+
+.bp3-card {
+    margin-bottom: 20px;
+}
+
+.card-container h1 {
+    color: #000;
+}
+
+.card-container h1:hover {
+    color: #888;
+}

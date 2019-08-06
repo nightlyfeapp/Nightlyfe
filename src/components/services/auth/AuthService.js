@@ -38,6 +38,22 @@ export default class AuthService {
     localStorage.removeItem('nl_token');
   }
 
+  fetch(url, options) {
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    if (this.loggedIn()) {
+      headers['Authorization'] = 'Bearer ' + this.getToken();
+    }
+
+    return this.fetch(url, {
+      headers,
+      ...options
+    }).then(res => res.json());
+  }
+
   signup(username, email, password) {
     return this.fetch(`${this.url}/auth/signup`, {
       method: 'POST',

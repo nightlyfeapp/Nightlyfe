@@ -13,11 +13,13 @@ class AllEvents extends Component {
   }
 
   async componentDidMount() {
-    await axios.get('http://localhost:9999/events').then(res => {
-      const events = res.data.events;
-      console.log(events);
-      this.setState({ events });
-    });
+    await axios
+      .get('https://nightlyfe-server.herokuapp.com/events')
+      .then(res => {
+        const events = res.data.events;
+        console.log(events);
+        this.setState({ events });
+      });
   }
 
   render() {

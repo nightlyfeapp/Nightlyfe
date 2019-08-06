@@ -1,0 +1,11 @@
+
+
+.login-form {
+    margin: 15vh auto;
+    width: 50vw;
+    padding: 60px;
+}
+
+.login-form .bp3-input-group {
+    margin-bottom: 20px;
+}

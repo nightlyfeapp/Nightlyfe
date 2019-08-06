@@ -48,7 +48,7 @@ export default class AuthService {
       headers['Authorization'] = 'Bearer ' + this.getToken();
     }
 
-    return this.fetch(url, {
+    return fetch(url, {
       headers,
       ...options
     }).then(res => res.json());

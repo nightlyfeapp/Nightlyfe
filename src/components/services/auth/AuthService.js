@@ -1,9 +1,9 @@
 import decode from 'jwt-decode';
+import axios from 'axios';
 
 export default class AuthService {
   constructor(url) {
     this.url = url || 'https://nightlyfe-server.herokuapp.com';
-    this.fetch = this.fetch.bind(this);
     this.signup = this.signup.bind(this);
     this.login = this.login.bind(this);
   }
@@ -38,33 +38,16 @@ export default class AuthService {
     localStorage.removeItem('nl_token');
   }
 
-  fetch(url, options) {
-    const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    };
-
-    if (this.loggedIn()) {
-      headers['Authorization'] = 'Bearer ' + this.getToken();
-    }
-
-    return fetch(url, {
-      headers,
-      ...options
-    }).then(res => res.json());
-  }
-
   signup(username, email, password) {
-    return this.fetch(`${this.url}/auth/signup`, {
-      method: 'POST',
-      body: JSON.stringify({
+    return axios
+      .post('https://nightlyfe-server.herokuapp.com/auth/signup', {
         username,
         email,
         password
       })
-    })
       .then(res => {
-        this.setToken(res.token);
+        console.log(res);
+        this.setToken(res.data.token);
         return Promise.resolve(res);
       })
       .catch(err => {
@@ -74,15 +57,14 @@ export default class AuthService {
   }
 
   login(username, password) {
-    return this.fetch(`${this.url}/auth/login`, {
-      method: 'POST',
-      body: JSON.stringify({
+    return axios
+      .post('https://nightlyfe-server.herokuapp.com/auth/login', {
         username,
         password
       })
-    })
       .then(res => {
-        this.setToken(res.token);
+        console.log(res);
+        this.setToken(res.data.token);
         return Promise.resolve(res);
       })
       .catch(err => {

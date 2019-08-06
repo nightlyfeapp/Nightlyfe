@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Login.css';
 
 import { Button } from '@blueprintjs/core';
-import axios from 'axios';
+import AuthService from '../../services/auth/AuthService';
 
 class Login extends Component {
   constructor() {
@@ -11,6 +11,7 @@ class Login extends Component {
       username: '',
       password: ''
     };
+    this.Auth = new AuthService();
   }
 
   submitForm = event => {
@@ -18,14 +19,7 @@ class Login extends Component {
 
     const { username, password } = this.state;
 
-    axios
-      .post('https://nightlyfe-server.herokuapp.com/auth/login', {
-        username,
-        password
-      })
-      .then(res => {
-        console.log(res);
-      });
+    this.Auth.login(username, password);
   };
 
   handleChange = event => {
@@ -38,7 +32,7 @@ class Login extends Component {
     const { username, password } = this.state;
     return (
       <div class="container">
-        <div class="login-form ">
+        <form class="login-form" onSubmit={this.submitForm}>
           <h1> Log In</h1>
           <div class="bp3-input-group .modifier">
             <input
@@ -62,8 +56,14 @@ class Login extends Component {
             />
             <button class="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" />
           </div>
-          <Button rightIcon="arrow-right" intent="success" text="Log In" />
-        </div>
+          <Button
+            rightIcon="arrow-right"
+            intent="success"
+            text="Log In"
+            value="submit"
+            type="submit"
+          />
+        </form>
       </div>
     );
   }

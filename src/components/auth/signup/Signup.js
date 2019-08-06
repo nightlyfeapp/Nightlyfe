@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Signup.css';
 
 import { Button } from '@blueprintjs/core';
-import axios from 'axios';
+import AuthService from '../../services/auth/AuthService';
 
 class Signup extends Component {
   constructor() {
@@ -12,6 +12,7 @@ class Signup extends Component {
       email: '',
       password: ''
     };
+    this.Auth = new AuthService();
   }
 
   submitForm = event => {
@@ -19,16 +20,7 @@ class Signup extends Component {
 
     const { username, email, password } = this.state;
 
-    axios
-      .post('https://nightlyfe-server.herokuapp.com/auth/signup', {
-        username,
-        email,
-        password
-      })
-      .then(res => {
-        this.props.history.replace('/');
-        console.log(res);
-      });
+    this.Auth.signup(username, email, password);
   };
 
   handleChange = event => {

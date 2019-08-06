@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Login.css';
 
-import { Button, Icon } from '@blueprintjs/core';
+import { Button } from '@blueprintjs/core';
 
 class Login extends Component {
   render() {

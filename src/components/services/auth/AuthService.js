@@ -8,6 +8,36 @@ export default class AuthService {
     this.login = this.login.bind(this);
   }
 
+  setToken(token) {
+    localStorage.setItem('nl_token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('nl_token');
+  }
+
+  isTokenExpired(token) {
+    try {
+      const decoded = decode(token);
+      if (decoded.exp < Date.now() / 1000) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      return err & false;
+    }
+  }
+
+  loggedIn() {
+    const token = this.getToken();
+    return !!token && !this.is;
+  }
+
+  logout() {
+    localStorage.removeItem('nl_token');
+  }
+
   signup(username, email, password) {
     return this.fetch(`${this.url}/auth/signup`, {
       method: 'POST',

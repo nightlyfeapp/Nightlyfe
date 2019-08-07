@@ -12,7 +12,7 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="profile-container">
         <div className="profile-top" id="top">
           <Card
             interactive={true}

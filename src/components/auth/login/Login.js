@@ -37,7 +37,7 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div classNameName="container">
+      <div classNameName="login-container">
         <form className="login-form" onSubmit={this.submitForm}>
           <h1> Log In</h1>
           <div className="bp3-input-group .modifier">

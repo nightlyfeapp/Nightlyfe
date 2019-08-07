@@ -31,7 +31,7 @@ class AllEvents extends Component {
             {this.state.events.map((events, index) => {
               return (
                 <div key={events._id} className="bp3-card bp3-elevation-3">
-                  <Link to={'/events/:eventId'}>
+                  <Link to={'/events/eventId'}>
                     <h1>{events.title}</h1>
                   </Link>
                   <h3>{events.location}</h3>

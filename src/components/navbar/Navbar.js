@@ -28,6 +28,11 @@ class Navbar extends Component {
     if (this.state.loggedIn === true) {
       return (
         <div>
+          <Link to={'/events/new'}>
+            <button className="bp3-button bp3-minimal bp3-icon-add">
+              Create New Event
+            </button>
+          </Link>
           <Link to={'/user/profile'}>
             <button className="bp3-button bp3-minimal">Profile</button>
           </Link>

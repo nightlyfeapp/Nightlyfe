@@ -21,7 +21,11 @@ class Signup extends Component {
 
     const { username, email, password } = this.state;
 
-    this.Auth.signup(username, email, password);
+    this.Auth.signup(username, email, password).then(res => {
+      if (this.Auth.loggedIn()) {
+        window.location = '/';
+      }
+    });
   };
 
   handleChange = event => {

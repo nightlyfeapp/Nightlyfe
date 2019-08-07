@@ -19,7 +19,9 @@ class Navbar extends Component {
 
   handleLogout = () => {
     this.Auth.logout();
-    this.props.history.replace('/');
+    if (!this.Auth.loggedIn()) {
+      window.location = '/';
+    }
   };
 
   checkAuth() {

@@ -20,7 +20,11 @@ class Login extends Component {
     const { username, password } = this.state;
 
     this.Auth.login(username, password).then(res => {
-      this.props.history.replace('/');
+      if (this.Auth.loggedIn()) {
+        window.location = '/';
+      } else {
+        alert('Incorrect Username/Password');
+      }
     });
   };
 

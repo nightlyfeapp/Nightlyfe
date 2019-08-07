@@ -28,7 +28,7 @@ class Navbar extends Component {
     if (this.state.loggedIn === true) {
       return (
         <div>
-          <Link to={'/profile'}>
+          <Link to={'/user/profile'}>
             <button class="bp3-button bp3-minimal">Profile</button>
           </Link>
           <span class="bp3-navbar-divider" />

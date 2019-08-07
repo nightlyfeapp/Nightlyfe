@@ -21,7 +21,7 @@ class Login extends Component {
 
     this.Auth.login(username, password).then(res => {
       if (this.Auth.loggedIn()) {
-        window.location = '/';
+        window.location = '/user/profile';
       } else {
         alert('Incorrect Username/Password');
       }

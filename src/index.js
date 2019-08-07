@@ -11,6 +11,7 @@ import Signup from './components/auth/signup/Signup';
 import About from './components/about/About';
 import AllEvents from './components/events/allEvents/AllEvents';
 import Event from './components/events/event/Event';
+import UserProfile from './components/profile/user/Profile';
 
 const appRoutes = (
   <Router>
@@ -22,6 +23,7 @@ const appRoutes = (
       <Route exact path="/auth/signup" component={Signup} />
       <Route exact path="/events" component={AllEvents} />
       <Route exact path="/events/:eventId" component={Event} />
+      <Route exact path="/user/profile" component={UserProfile} />
     </div>
   </Router>
 );

@@ -23,7 +23,7 @@ class Signup extends Component {
 
     this.Auth.signup(username, email, password).then(res => {
       if (this.Auth.loggedIn()) {
-        window.location = '/';
+        window.location = '/user/profile';
       }
     });
   };

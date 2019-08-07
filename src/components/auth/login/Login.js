@@ -37,30 +37,30 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div class="container">
-        <form class="login-form" onSubmit={this.submitForm}>
+      <div classNameName="container">
+        <form className="login-form" onSubmit={this.submitForm}>
           <h1> Log In</h1>
-          <div class="bp3-input-group .modifier">
+          <div className="bp3-input-group .modifier">
             <input
               type="username"
-              class="bp3-input"
+              className="bp3-input"
               placeholder="Username"
               name="username"
               value={username}
               onChange={this.handleChange}
             />
-            <button class="bp3-button bp3-minimal bp3-intent-warning bp3-icon-person" />
+            <button className="bp3-button bp3-minimal bp3-intent-warning bp3-icon-person" />
           </div>
-          <div class="bp3-input-group .modifier">
+          <div className="bp3-input-group .modifier">
             <input
               type="password"
-              class="bp3-input"
+              className="bp3-input"
               placeholder="Password"
               name="password"
               value={password}
               onChange={this.handleChange}
             />
-            <button class="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" />
+            <button className="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" />
           </div>
           <Button
             rightIcon="arrow-right"

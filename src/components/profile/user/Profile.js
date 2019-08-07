@@ -3,7 +3,13 @@ import './Profile.css';
 
 class Profile extends Component {
   render() {
-    return <div>Profile Works</div>;
+    return (
+      <div className="container">
+        <div className="profileHeader">
+          <h1>Profile Header</h1>
+        </div>
+      </div>
+    );
   }
 }
 

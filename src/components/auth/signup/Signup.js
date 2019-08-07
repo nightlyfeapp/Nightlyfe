@@ -37,41 +37,41 @@ class Signup extends Component {
   render() {
     const { username, email, password } = this.state;
     return (
-      <div class="container">
-        <form class="signup-form " onSubmit={this.submitForm}>
+      <div classNameName="container">
+        <form classNameName="signup-form " onSubmit={this.submitForm}>
           <h1> Sign Up</h1>
-          <div class="bp3-input-group .modifier">
+          <div classNameName="bp3-input-group .modifier">
             <input
               type="username"
-              class="bp3-input"
+              classNameName="bp3-input"
               placeholder="Username"
               name="username"
               value={username}
               onChange={this.handleChange}
             />
-            <button class="bp3-button bp3-minimal bp3-intent-warning bp3-icon-person" />
+            <button classNameName="bp3-button bp3-minimal bp3-intent-warning bp3-icon-person" />
           </div>
-          <div class="bp3-input-group .modifier">
+          <div classNameName="bp3-input-group .modifier">
             <input
               type="email"
-              class="bp3-input"
+              classNameName="bp3-input"
               placeholder="Email"
               name="email"
               value={email}
               onChange={this.handleChange}
             />
-            <button class="bp3-button bp3-minimal bp3-intent-warning bp3-icon-envelope" />
+            <button classNameName="bp3-button bp3-minimal bp3-intent-warning bp3-icon-envelope" />
           </div>
-          <div class="bp3-input-group .modifier">
+          <div classNameName="bp3-input-group .modifier">
             <input
               type="password"
-              class="bp3-input"
+              classNameName="bp3-input"
               placeholder="Password"
               name="password"
               value={password}
               onChange={this.handleChange}
             />
-            <button class="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" />
+            <button classNameName="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" />
           </div>
           <Button
             rightIcon="arrow-right"

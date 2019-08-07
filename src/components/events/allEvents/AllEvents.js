@@ -24,13 +24,13 @@ class AllEvents extends Component {
 
   render() {
     return (
-      <div class="container">
-        <h1 class="bp3-heading">Events</h1>
-        <div class="events">
+      <div className="container">
+        <h1 className="bp3-heading">Events</h1>
+        <div className="events">
           <div className="card-container">
             {this.state.events.map((events, index) => {
               return (
-                <div key={events._id} class="bp3-card bp3-elevation-3">
+                <div key={events._id} className="bp3-card bp3-elevation-3">
                   <Link to={'/events/:eventId'}>
                     <h1>{events.title}</h1>
                   </Link>

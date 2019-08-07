@@ -10,7 +10,8 @@ class Signup extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      loading: false
     };
     this.Auth = new AuthService();
   }

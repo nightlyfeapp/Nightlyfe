@@ -19,7 +19,9 @@ class Login extends Component {
 
     const { username, password } = this.state;
 
-    this.Auth.login(username, password);
+    this.Auth.login(username, password).then(res => {
+      this.props.history.replace('/');
+    });
   };
 
   handleChange = event => {

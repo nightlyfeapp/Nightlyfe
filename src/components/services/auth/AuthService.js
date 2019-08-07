@@ -8,6 +8,10 @@ export default class AuthService {
     this.login = this.login.bind(this);
   }
 
+  getProfile() {
+    return decode(this.getToken());
+  }
+
   setToken(token) {
     localStorage.setItem('nl_token', token);
   }
@@ -31,7 +35,11 @@ export default class AuthService {
 
   loggedIn() {
     const token = this.getToken();
-    return !!token && !this.is;
+    if (token === null) {
+      return false;
+    } else if (token) {
+      return true;
+    }
   }
 
   logout() {

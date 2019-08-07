@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './Profile.css';
 
+import avatar from '../../../assets/images/8c46965de03827dc2a05e4c77eb110db--batman-comics.jpg';
+import { Card, Elevation } from '@blueprintjs/core';
+
 class Profile extends Component {
   constructor() {
     super();
@@ -10,10 +13,17 @@ class Profile extends Component {
   render() {
     return (
       <div className="container">
-        <div className="profile-top">
-          <h1>Profile Header</h1>
+        <div className="profile-top" id="top">
+          <Card
+            interactive={true}
+            elevation={Elevation.TWO}
+            className="profile-card">
+            <img src={avatar} alt="" />
+            <p>Username</p>
+            <p>User Since</p>
+          </Card>
         </div>
-        <div className="profile-bottom">
+        <div className="profile-bottom" id="bottom">
           <div className="tabbed">
             <input
               name="tabbed"

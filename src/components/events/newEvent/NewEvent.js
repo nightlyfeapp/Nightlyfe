@@ -2,24 +2,23 @@ import React, { Component } from 'react';
 import './NewEvent.css';
 
 import axios from 'axios';
-import { FormGroup } from '@blueprintjs/core';
 import { Button } from '@blueprintjs/core';
 
 import Title from './title/Title';
 import Description from './description/Description';
 import Location from './location/Location';
-import Time from './time/Time';
+import DatePicker from 'react-datepicker';
 
+import 'react-datepicker/dist/react-datepicker.css';
 class NewEvent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentStep: 1,
       title: '',
       description: '',
       startDate: '',
-      time: '',
+      startTime: '',
       location: {
         address: '',
         city: '',
@@ -36,13 +35,30 @@ class NewEvent extends Component {
     });
   };
 
+  handleDatechange = date => {
+    const { startDate } = this.state;
+    console.log(startDate);
+    this.setState({
+      startDate: date
+    });
+  };
+
+  handleTimeChange = time => {
+    const { startTime } = this.state;
+    console.log(startTime);
+    this.setState({
+      startTime: time
+    });
+  };
+
   submitForm = event => {
     event.preventDefault();
 
     const {
       title,
       description,
-      time,
+      startDate,
+      startTime,
       address,
       city,
       state,
@@ -51,7 +67,8 @@ class NewEvent extends Component {
 
     const data = {
       title: { title },
-      timeOfEvent: { time },
+      eventDate: { startDate },
+      eventTime: { startTime },
       location: {
         address: { address },
         city: { city },
@@ -74,7 +91,7 @@ class NewEvent extends Component {
   render() {
     return (
       <div>
-        <FormGroup onSubmit={this.submitForm}>
+        <form onSubmit={this.submitForm}>
           <Title handleChange={this.handleChange} title={this.state.title} />
           <Description
             handleChange={this.handleChange}
@@ -87,11 +104,23 @@ class NewEvent extends Component {
             state={this.state.state}
             areaCode={this.state.areaCode}
           />
-          {/* <Time
-            handleChange={this.state.handleChange}
-            time={this.state.time}
-            startDate={this.state.startDate}
-          /> */}
+          <label htmlFor="date">Date</label>
+          <DatePicker
+            selected={this.state.startDate}
+            onChange={this.handleDatechange}
+            name="date"
+            dateFormat="MMMM d, yyyy"
+          />
+          <label htmlFor="time">Time</label>
+          <DatePicker
+            selected={this.state.startTime}
+            onChange={this.handleTimeChange}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={5}
+            dateFormat="h:mm aa"
+            timeCaption="Time"
+          />
           <Button
             rightIcon="arrow-right"
             intent="success"
@@ -99,7 +128,7 @@ class NewEvent extends Component {
             value="submit"
             type="submit"
           />
-        </FormGroup>
+        </form>
       </div>
     );
   }

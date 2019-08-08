@@ -18,7 +18,7 @@ class Title extends Component {
           value={this.props.title}
           onChange={this.props.handleChange}
         />
-        <button className="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" />
+        {/* <button className="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" /> */}
       </FormGroup>
     );
   }

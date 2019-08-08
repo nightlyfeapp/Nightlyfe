@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FormGroup from '@blueprintjs/core';
+import { FormGroup } from '@blueprintjs/core';
 
 class Description extends Component {
   render() {

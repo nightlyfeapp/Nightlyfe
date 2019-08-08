@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 
 import { FormGroup } from '@blueprintjs/core';
-import { DatePicker } from 'date-fns';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class Time extends Component {
-  constructor() {
-    super();
-    this.state = {
-      startDate: ''
-    };
-  }
-
   render() {
-    if (this.props.currentStep !== 1) {
-      return null;
-    }
     return (
       <FormGroup className="form-group">
         <label htmlFor="time">Select The Time of Your Event</label>
         <DatePicker
           className="form-control"
-          selected={this.state.startDate}
+          selected={this.props.startDate}
           onChange={this.props.handleChange}
           showTimeSelect
           timeIntervals={5}

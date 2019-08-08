@@ -4,9 +4,6 @@ import { FormGroup } from '@blueprintjs/core';
 
 class Title extends Component {
   render() {
-    if (this.props.currentStep !== 1) {
-      return null;
-    }
     return (
       <FormGroup className="bp3-input-group .modifier">
         <label htmlFor="title">What's Your Event Called?</label>

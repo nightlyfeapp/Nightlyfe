@@ -7,9 +7,9 @@ class LocationSearchInput extends React.Component {
   //   this.state = { address: '' };
   // }
 
-  // handleChange = address => {
-  //   this.setState({ address });
-  // };
+  handleChange = address => {
+    this.setState({ address });
+  };
 
   // handleSelect = address => {
   //   geocodeByAddress(address)

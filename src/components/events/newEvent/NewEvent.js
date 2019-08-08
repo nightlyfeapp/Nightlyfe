@@ -3,6 +3,7 @@ import './NewEvent.css';
 
 import axios from 'axios';
 import { FormGroup } from '@blueprintjs/core';
+import { Button } from '@blueprintjs/core';
 
 import Title from './title/Title';
 import Description from './description/Description';
@@ -18,34 +19,57 @@ class NewEvent extends Component {
       title: '',
       description: '',
       startDate: '',
-      location: '',
-      time: ''
+      time: '',
+      address: '',
+      city: '',
+      stae: '',
+      areaCode: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
     const { title, description, location, time } = this.state;
-    console.log(title, description, location, time);
+    console.log(
+      `Title: ${title},  Description: ${description}, Location: ${location}, Time: ${time}`
+    );
 
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
+  handleAddressChange = address => {
+    this.setState({ address });
+  };
+
   submitForm = event => {
     event.preventDefault();
 
-    const { title, description, location, time } = this.state;
+    const {
+      title,
+      description,
+      time,
+      address,
+      city,
+      state,
+      areaCode
+    } = this.state;
+
+    const data = {
+      title: { title },
+      timeOfEvent: { time },
+      location: {
+        address: { address },
+        city: { city },
+        state: { state },
+        areaCode: { areaCode }
+      },
+      description: { description }
+    };
 
     axios
-      .post(
-        'https://nightlyfe-server.herokuapp.com/events/new',
-        title,
-        description,
-        location,
-        time
-      )
+      .post('https://nightlyfe-server.herokuapp.com/events/new', data)
       .then(res => {
         console.log(res);
       })
@@ -59,19 +83,27 @@ class NewEvent extends Component {
       <div>
         <FormGroup onSubmit={this.submitForm}>
           <Title handleChange={this.handleChange} title={this.state.title} />
-          {/* <Description
-            handleChange={this.state.handleChange}
+          <Description
+            handleChange={this.handleChange}
             description={this.state.description}
           />
-          <Location
-            handleChange={this.state.handleChange}
+          {/* <Location
+            handleChange={this.handleChange}
             location={this.state.location}
-          />
-          <Time
+            address
+          /> */}
+          {/* <Time
             handleChange={this.state.handleChange}
             time={this.state.time}
             startDate={this.state.startDate}
           /> */}
+          <Button
+            rightIcon="arrow-right"
+            intent="success"
+            text="Create Event"
+            value="submit"
+            type="submit"
+          />
         </FormGroup>
       </div>
     );

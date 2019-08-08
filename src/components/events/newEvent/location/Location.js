@@ -1,63 +1,50 @@
-import React from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete'; // getLatLng // geocodeByAddress,
+import React, { Component } from 'react';
 
-class LocationSearchInput extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { address: '' };
-  // }
+import { FormGroup } from '@blueprintjs/core';
 
-  handleChange = address => {
-    this.setState({ address });
-  };
-
-  // handleSelect = address => {
-  //   geocodeByAddress(address)
-  //     .then(results => getLatLng(results[0]))
-  //     .then(latLng => console.log('Success', latLng))
-  //     .catch(error => console.error('Error', error));
-  // };
-
+class Location extends Component {
   render() {
     return (
-      <PlacesAutocomplete
-        value={this.props.address}
-        onChange={this.props.handleChange}
-        onSelect={this.props.handleSelect}>
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'bp3-input form-control'
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style
-                    })}>
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
+      <FormGroup className="bp3-input-group .modifier">
+        <label htmlFor="address">Address</label>
+        <input
+          type="text"
+          className="bp3-input form-control"
+          placeholder="Enter Address"
+          name="address"
+          value={this.props.address || ''}
+          onChange={this.props.handleChange}
+        />
+        <label htmlFor="city">City</label>
+        <input
+          type="text"
+          className="bp3-input form-control"
+          placeholder="Enter City"
+          name="city"
+          value={this.props.city || ''}
+          onChange={this.props.handleChange}
+        />
+        <label htmlFor="state">State</label>
+        <input
+          type="text"
+          className="bp3-input form-control"
+          placeholder="Enter State"
+          name="state"
+          value={this.props.state || ''}
+          onChange={this.props.handleChange}
+        />
+        <label htmlFor="areaCode">Area Code</label>
+        <input
+          type="text"
+          className="bp3-input form-control"
+          placeholder="Enter Area Code"
+          name="areaCode"
+          value={this.props.areaCode || ''}
+          onChange={this.props.handleChange}
+        />
+      </FormGroup>
     );
   }
 }
 
-export default LocationSearchInput;
+export default Location;

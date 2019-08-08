@@ -10,12 +10,11 @@ class Description extends Component {
         <input
           type="text"
           className="bp3-input form-control"
-          placeholder="Enter A Description"
+          placeholder="Enter Description"
           name="description"
           value={this.props.title}
           onChange={this.props.handleChange}
         />
-        {/* <button className="bp3-button bp3-minimal bp3-intent-warning bp3-icon-lock" /> */}
       </FormGroup>
     );
   }

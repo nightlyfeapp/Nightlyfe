@@ -20,27 +20,20 @@ class NewEvent extends Component {
       description: '',
       startDate: '',
       time: '',
-      address: '',
-      city: '',
-      stae: '',
-      areaCode: ''
+      location: {
+        address: '',
+        city: '',
+        state: '',
+        areaCode: ''
+      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
-    const { title, description, location, time } = this.state;
-    console.log(
-      `Title: ${title},  Description: ${description}, Location: ${location}, Time: ${time}`
-    );
-
     this.setState({
       [event.target.name]: event.target.value
     });
-  };
-
-  handleAddressChange = address => {
-    this.setState({ address });
   };
 
   submitForm = event => {
@@ -87,11 +80,13 @@ class NewEvent extends Component {
             handleChange={this.handleChange}
             description={this.state.description}
           />
-          {/* <Location
+          <Location
             handleChange={this.handleChange}
-            location={this.state.location}
-            address
-          /> */}
+            address={this.state.address}
+            city={this.state.city}
+            state={this.state.state}
+            areaCode={this.state.areaCode}
+          />
           {/* <Time
             handleChange={this.state.handleChange}
             time={this.state.time}

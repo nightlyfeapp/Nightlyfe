@@ -3,6 +3,7 @@ import './NewEvent.css';
 
 import axios from 'axios';
 import { Button } from '@blueprintjs/core';
+import AuthService from '../../services/auth/AuthService';
 
 import Title from './title/Title';
 import Description from './description/Description';
@@ -26,10 +27,12 @@ class NewEvent extends Component {
         areaCode: ''
       }
     };
+    this.AuthService = new AuthService();
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
+    this.getUserToken();
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -50,6 +53,11 @@ class NewEvent extends Component {
       startTime: time
     });
   };
+
+  getUserToken() {
+    let token = this.AuthService.getToken();
+    return token;
+  }
 
   submitForm = event => {
     event.preventDefault();
@@ -78,14 +86,34 @@ class NewEvent extends Component {
       description: { description }
     };
 
-    axios
-      .post('https://nightlyfe-server.herokuapp.com/events/new', data)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // fetch('https://nightlyfe-server.herokuapp.com/events/new', {
+    //   method: 'POST',
+    //   headers: new Headers({
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${this.getUserToken()}`
+    //   }),
+    //   body: data
+    // }).then(res => {
+    //   console.log(res);
+    // });
+
+    // axios
+    //   .post('https://nightlyfe-server.herokuapp.com/events/new', data, config)
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+    // axios({
+    //   method: 'POST',
+    //   url: 'https://nightlyfe-server.herokuapp.com/events/new',
+    //   config,
+    //   data
+    // }).then(res => {
+    //   console.log(res);
+    // });
   };
 
   render() {
